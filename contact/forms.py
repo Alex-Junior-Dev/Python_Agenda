@@ -1,9 +1,12 @@
-from typing import Any, Mapping
-from django import forms
-from django.core.exceptions import ValidationError
+from django import forms # type: ignore
+from django.core.exceptions import ValidationError # type: ignore
+from django.contrib.auth.forms import UserCreationForm # type: ignore
 
 from . import models
 
+
+class RegisterForm(UserCreationForm):
+    pass
 
 class ContactForm(forms.ModelForm):
     picture = forms.ImageField(
@@ -49,3 +52,5 @@ class ContactForm(forms.ModelForm):
                 )
             )
         return first_name
+    
+
