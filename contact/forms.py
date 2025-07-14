@@ -7,6 +7,16 @@ from . import models
 
 
 class RegisterForm(UserCreationForm):
+    first_name = forms.CharField(
+    required=True,
+    min_length=3,
+)
+    last_name = forms.CharField(
+        required=True,
+        min_length=3,
+)
+    email = forms.EmailField()
+
     class Meta:
         model = User
         fields = (
@@ -22,6 +32,8 @@ class RegisterForm(UserCreationForm):
                 'email',
                 ValidationError('Já existe este e-mail', code='invalid')
             )
+        
+        return email
 
 class ContactForm(forms.ModelForm):
     picture = forms.ImageField(
